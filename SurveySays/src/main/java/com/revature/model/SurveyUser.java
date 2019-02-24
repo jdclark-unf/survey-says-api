@@ -1,21 +1,33 @@
 package com.revature.model;
 
-public class AppUser {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Table(name = "survey_user")
+@Entity
+public class SurveyUser {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
 	private int userId;
 	private String username;
 	private String password;
 	private String firstName;
 	private String lastName;
 	private String email;
-	private String role; // should be Role object?
+	private SurveyRole role;
 	
-	public AppUser() {
+	public SurveyUser() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public AppUser(int userId, String username, String password, String firstName, String lastName, String email,
-			String role) {
+	public SurveyUser(int userId, String username, String password, String firstName, String lastName, String email,
+			SurveyRole role) {
 		super();
 		this.userId = userId;
 		this.username = username;
@@ -113,14 +125,14 @@ public class AppUser {
 	/**
 	 * @return the role
 	 */
-	public String getRole() {
+	public SurveyRole getRole() {
 		return role;
 	}
 
 	/**
 	 * @param role the role to set
 	 */
-	public void setRole(String role) {
+	public void setRole(SurveyRole role) {
 		this.role = role;
 	}
 
@@ -135,7 +147,6 @@ public class AppUser {
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + userId;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -152,7 +163,7 @@ public class AppUser {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AppUser other = (AppUser) obj;
+		SurveyUser other = (SurveyUser) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -173,11 +184,6 @@ public class AppUser {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (role == null) {
-			if (other.role != null)
-				return false;
-		} else if (!role.equals(other.role))
-			return false;
 		if (userId != other.userId)
 			return false;
 		if (username == null) {
@@ -193,12 +199,12 @@ public class AppUser {
 	 */
 	@Override
 	public String toString() {
-		return "AppUser [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", email=" + email + ", role=" + role + ", getUserId()="
-				+ getUserId() + ", getUsername()=" + getUsername() + ", getPassword()=" + getPassword()
-				+ ", getFirstName()=" + getFirstName() + ", getLastName()=" + getLastName() + ", getEmail()="
-				+ getEmail() + ", getRole()=" + getRole() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass()
-				+ ", toString()=" + super.toString() + "]";
+		return "SurveyUser [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", email=" + email + "]";
 	}
+	
+
+	
+}
 	
 	

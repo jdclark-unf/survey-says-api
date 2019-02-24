@@ -15,33 +15,34 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 
-@Table(name = "answers")
+@Table(name = "answer_choice")
 @Entity
-public class Answer {
+public class AnswerChoice {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "answer_id")
-	private int answerId;
+	@Column(name = "choice_id")
+	private int choiceId;
 	
 	private String answerText;
+	private Question question;
 
-	public Answer() {
+	public AnswerChoice() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @return the answerId
+	 * @return the choiceId
 	 */
-	public int getAnswerId() {
-		return answerId;
+	public int getChoiceId() {
+		return choiceId;
 	}
 
 	/**
-	 * @param answerId the answerId to set
+	 * @param choiceId the choiceId to set
 	 */
-	public void setAnswerId(int answerId) {
-		this.answerId = answerId;
+	public void setChoiceId(int choiceId) {
+		this.choiceId = choiceId;
 	}
 
 	/**
@@ -58,6 +59,20 @@ public class Answer {
 		this.answerText = answerText;
 	}
 
+	/**
+	 * @return the question
+	 */
+	public Question getQuestion() {
+		return question;
+	}
+
+	/**
+	 * @param question the question to set
+	 */
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -65,8 +80,9 @@ public class Answer {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + answerId;
 		result = prime * result + ((answerText == null) ? 0 : answerText.hashCode());
+		result = prime * result + choiceId;
+		result = prime * result + ((question == null) ? 0 : question.hashCode());
 		return result;
 	}
 
@@ -81,13 +97,18 @@ public class Answer {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Answer other = (Answer) obj;
-		if (answerId != other.answerId)
-			return false;
+		AnswerChoice other = (AnswerChoice) obj;
 		if (answerText == null) {
 			if (other.answerText != null)
 				return false;
 		} else if (!answerText.equals(other.answerText))
+			return false;
+		if (choiceId != other.choiceId)
+			return false;
+		if (question == null) {
+			if (other.question != null)
+				return false;
+		} else if (!question.equals(other.question))
 			return false;
 		return true;
 	}
@@ -97,8 +118,10 @@ public class Answer {
 	 */
 	@Override
 	public String toString() {
-		return "Answer [answerId=" + answerId + ", answerText=" + answerText + "]";
+		return "AnswerChoice [choiceId=" + choiceId + ", answerText=" + answerText + ", question=" + question + "]";
 	}
+
+	
 	
 	
 }

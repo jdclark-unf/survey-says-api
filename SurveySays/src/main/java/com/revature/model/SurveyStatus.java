@@ -1,8 +1,5 @@
 package com.revature.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,9 +15,9 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 
-@Table(name = "status")
+@Table(name = "survey_status")
 @Entity
-public class Status {
+public class SurveyStatus {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "status_id")
@@ -28,7 +25,7 @@ public class Status {
 	
 	private String statusType;
 
-	public Status() {
+	public SurveyStatus() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

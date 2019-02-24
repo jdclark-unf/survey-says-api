@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 
-@Table(name = "responses")
+@Table(name = "response")
 @Entity
 public class Response {
 	@Id
@@ -25,10 +25,8 @@ public class Response {
 	
 	private Question question;
 
-	private Answer answerChoice;
+	private AnswerChoice answerChosen;
 	
-	private AppUser respondent;
-
 	public Response() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -47,14 +45,14 @@ public class Response {
 	public void setResponseId(int responseId) {
 		this.responseId = responseId;
 	}
-	
+
 	/**
 	 * @return the question
 	 */
 	public Question getQuestion() {
 		return question;
 	}
-	
+
 	/**
 	 * @param question the question to set
 	 */
@@ -63,31 +61,17 @@ public class Response {
 	}
 
 	/**
-	 * @return the answerChoice
+	 * @return the answerChosen
 	 */
-	public Answer getAnswerChoice() {
-		return answerChoice;
+	public AnswerChoice getAnswerChosen() {
+		return answerChosen;
 	}
 
 	/**
-	 * @param answerChoice the answerChoice to set
+	 * @param answerChosen the answerChosen to set
 	 */
-	public void setAnswerChoice(Answer answerChoice) {
-		this.answerChoice = answerChoice;
-	}
-
-	/**
-	 * @return the respondent
-	 */
-	public AppUser getRespondent() {
-		return respondent;
-	}
-
-	/**
-	 * @param respondent the respondent to set
-	 */
-	public void setRespondent(AppUser respondent) {
-		this.respondent = respondent;
+	public void setAnswerChosen(AnswerChoice answerChosen) {
+		this.answerChosen = answerChosen;
 	}
 
 	/* (non-Javadoc)
@@ -97,8 +81,8 @@ public class Response {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((answerChoice == null) ? 0 : answerChoice.hashCode());
-		result = prime * result + ((respondent == null) ? 0 : respondent.hashCode());
+		result = prime * result + ((answerChosen == null) ? 0 : answerChosen.hashCode());
+		result = prime * result + ((question == null) ? 0 : question.hashCode());
 		result = prime * result + responseId;
 		return result;
 	}
@@ -115,15 +99,15 @@ public class Response {
 		if (getClass() != obj.getClass())
 			return false;
 		Response other = (Response) obj;
-		if (answerChoice == null) {
-			if (other.answerChoice != null)
+		if (answerChosen == null) {
+			if (other.answerChosen != null)
 				return false;
-		} else if (!answerChoice.equals(other.answerChoice))
+		} else if (!answerChosen.equals(other.answerChosen))
 			return false;
-		if (respondent == null) {
-			if (other.respondent != null)
+		if (question == null) {
+			if (other.question != null)
 				return false;
-		} else if (!respondent.equals(other.respondent))
+		} else if (!question.equals(other.question))
 			return false;
 		if (responseId != other.responseId)
 			return false;
@@ -135,8 +119,7 @@ public class Response {
 	 */
 	@Override
 	public String toString() {
-		return "Response [responseId=" + responseId + ", answerChoice=" + answerChoice + ", respondent=" + respondent
-				+ "]";
+		return "Response [responseId=" + responseId + ", question=" + question + ", answerChosen=" + answerChosen + "]";
 	}
 	
 	

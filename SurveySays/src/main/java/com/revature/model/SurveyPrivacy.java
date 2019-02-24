@@ -1,8 +1,5 @@
 package com.revature.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,52 +10,51 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 
-@Table(name = "roles")
+@Table(name = "survey_privacy")
 @Entity
-public class Role {
+public class SurveyPrivacy {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "role_id")
-	private int roleId;
+	@Column(name = "privacy_id")
+	private int privacyId;
 	
-	private String roleName;
+	private String privacyType;
 
-	public Role() {
+	public SurveyPrivacy() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @return the roleId
+	 * @return the privacyId
 	 */
-	public int getRoleId() {
-		return roleId;
+	public int getPrivacyId() {
+		return privacyId;
 	}
 
 	/**
-	 * @param roleId the roleId to set
+	 * @param privacyId the privacyId to set
 	 */
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
+	public void setPrivacyId(int privacyId) {
+		this.privacyId = privacyId;
 	}
 
 	/**
-	 * @return the roleName
+	 * @return the privacyType
 	 */
-	public String getRoleName() {
-		return roleName;
+	public String getPrivacyType() {
+		return privacyType;
 	}
 
 	/**
-	 * @param roleName the roleName to set
+	 * @param privacyType the privacyType to set
 	 */
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+	public void setPrivacyType(String privacyType) {
+		this.privacyType = privacyType;
 	}
 
 	/* (non-Javadoc)
@@ -68,8 +64,8 @@ public class Role {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + roleId;
-		result = prime * result + ((roleName == null) ? 0 : roleName.hashCode());
+		result = prime * result + privacyId;
+		result = prime * result + ((privacyType == null) ? 0 : privacyType.hashCode());
 		return result;
 	}
 
@@ -84,13 +80,13 @@ public class Role {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Role other = (Role) obj;
-		if (roleId != other.roleId)
+		SurveyPrivacy other = (SurveyPrivacy) obj;
+		if (privacyId != other.privacyId)
 			return false;
-		if (roleName == null) {
-			if (other.roleName != null)
+		if (privacyType == null) {
+			if (other.privacyType != null)
 				return false;
-		} else if (!roleName.equals(other.roleName))
+		} else if (!privacyType.equals(other.privacyType))
 			return false;
 		return true;
 	}
@@ -100,8 +96,9 @@ public class Role {
 	 */
 	@Override
 	public String toString() {
-		return "Role [roleId=" + roleId + ", roleName=" + roleName + "]";
+		return "SurveyPrivacy [privacyId=" + privacyId + ", privacyType=" + privacyType + "]";
 	}
+	
 	
 	
 }

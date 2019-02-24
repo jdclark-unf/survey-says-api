@@ -19,7 +19,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 
-@Table(name = "surveys")
+@Table(name = "survey")
 @Entity
 public class Survey {
 	@Id
@@ -29,28 +29,27 @@ public class Survey {
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
-	private User creator;
+	private SurveyUser creator;
 	
 	private String title;
 	private String description;
-	private Date creationDate;
-	private Date expirationDate;
+	private Date dateCreated;
+	private Date closingDate;
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "status_id")
-	private Status status;
+	private SurveyStatus status;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "restriction_id")
-	private Restriction restriction;
+	@JoinColumn(name = "privacy_id")
+	private SurveyPrivacy privacy;
 	
-	//
-	private Set(Question) questions;
 
 	public Survey() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 
 	/**
 	 * @return the surveyId
@@ -59,6 +58,7 @@ public class Survey {
 		return surveyId;
 	}
 
+
 	/**
 	 * @param surveyId the surveyId to set
 	 */
@@ -66,19 +66,38 @@ public class Survey {
 		this.surveyId = surveyId;
 	}
 
+
 	/**
 	 * @return the creator
 	 */
-	public User getCreator() {
+	public SurveyUser getCreator() {
 		return creator;
 	}
+
 
 	/**
 	 * @param creator the creator to set
 	 */
-	public void setCreator(User creator) {
+	public void setCreator(SurveyUser creator) {
 		this.creator = creator;
 	}
+
+
+	/**
+	 * @return the title
+	 */
+	public String getTitle() {
+		return title;
+	}
+
+
+	/**
+	 * @param title the title to set
+	 */
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 
 	/**
 	 * @return the description
@@ -87,6 +106,7 @@ public class Survey {
 		return description;
 	}
 
+
 	/**
 	 * @param description the description to set
 	 */
@@ -94,61 +114,141 @@ public class Survey {
 		this.description = description;
 	}
 
-	/**
-	 * @return the creationDate
-	 */
-	public Date getCreationDate() {
-		return creationDate;
-	}
 
 	/**
-	 * @param creationDate the creationDate to set
+	 * @return the dateCreated
 	 */
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
+	public Date getDateCreated() {
+		return dateCreated;
 	}
 
-	/**
-	 * @return the expirationDate
-	 */
-	public Date getExpirationDate() {
-		return expirationDate;
-	}
 
 	/**
-	 * @param expirationDate the expirationDate to set
+	 * @param dateCreated the dateCreated to set
 	 */
-	public void setExpirationDate(Date expirationDate) {
-		this.expirationDate = expirationDate;
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
+
+
+	/**
+	 * @return the closingDate
+	 */
+	public Date getClosingDate() {
+		return closingDate;
+	}
+
+
+	/**
+	 * @param closingDate the closingDate to set
+	 */
+	public void setClosingDate(Date closingDate) {
+		this.closingDate = closingDate;
+	}
+
 
 	/**
 	 * @return the status
 	 */
-	public Status getStatus() {
+	public SurveyStatus getStatus() {
 		return status;
 	}
+
 
 	/**
 	 * @param status the status to set
 	 */
-	public void setStatus(Status status) {
+	public void setStatus(SurveyStatus status) {
 		this.status = status;
 	}
 
-	/**
-	 * @return the restriction
-	 */
-	public Restriction getRestriction() {
-		return restriction;
-	}
 
 	/**
-	 * @param restriction the restriction to set
+	 * @return the privacy
 	 */
-	public void setRestriction(Restriction restriction) {
-		this.restriction = restriction;
+	public SurveyPrivacy getPrivacy() {
+		return privacy;
 	}
+
+
+	/**
+	 * @param privacy the privacy to set
+	 */
+	public void setPrivacy(SurveyPrivacy privacy) {
+		this.privacy = privacy;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((closingDate == null) ? 0 : closingDate.hashCode());
+		result = prime * result + ((creator == null) ? 0 : creator.hashCode());
+		result = prime * result + ((dateCreated == null) ? 0 : dateCreated.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + surveyId;
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Survey other = (Survey) obj;
+		if (closingDate == null) {
+			if (other.closingDate != null)
+				return false;
+		} else if (!closingDate.equals(other.closingDate))
+			return false;
+		if (creator == null) {
+			if (other.creator != null)
+				return false;
+		} else if (!creator.equals(other.creator))
+			return false;
+		if (dateCreated == null) {
+			if (other.dateCreated != null)
+				return false;
+		} else if (!dateCreated.equals(other.dateCreated))
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (surveyId != other.surveyId)
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Survey [surveyId=" + surveyId + ", creator=" + creator + ", title=" + title + ", description="
+				+ description + ", dateCreated=" + dateCreated + ", closingDate=" + closingDate + "]";
+	}
+	
+	
 	
 	
 }
