@@ -1,8 +1,5 @@
 package com.revature.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,48 +14,55 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Table(name = "roles")
+@Table(name = "question")
 @Entity
-public class Role {
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class Question {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "role_id")
-	private int roleId;
+	@Column(name = "question_id")
+	private int questionId;
 	
-	private String roleName;
+	@Column(name = "question_text")
+	private String questionText;
+	
+	@ManyToOne
+	@JoinColumn(name = "survey_id")
+	private Survey survey;
 
-	public Role() {
+	public Question() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @return the roleId
+	 * @return the questionId
 	 */
-	public int getRoleId() {
-		return roleId;
+	public int getQuestionId() {
+		return questionId;
 	}
 
 	/**
-	 * @param roleId the roleId to set
+	 * @param questionId the questionId to set
 	 */
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
 	}
 
 	/**
-	 * @return the roleName
+	 * @return the questionText
 	 */
-	public String getRoleName() {
-		return roleName;
+	public String getQuestionText() {
+		return questionText;
 	}
 
 	/**
-	 * @param roleName the roleName to set
+	 * @param questionText the questionText to set
 	 */
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+	public void setQuestionText(String questionText) {
+		this.questionText = questionText;
 	}
 
 	/* (non-Javadoc)
@@ -68,8 +72,8 @@ public class Role {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + roleId;
-		result = prime * result + ((roleName == null) ? 0 : roleName.hashCode());
+		result = prime * result + questionId;
+		result = prime * result + ((questionText == null) ? 0 : questionText.hashCode());
 		return result;
 	}
 
@@ -84,13 +88,13 @@ public class Role {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Role other = (Role) obj;
-		if (roleId != other.roleId)
+		Question other = (Question) obj;
+		if (questionId != other.questionId)
 			return false;
-		if (roleName == null) {
-			if (other.roleName != null)
+		if (questionText == null) {
+			if (other.questionText != null)
 				return false;
-		} else if (!roleName.equals(other.roleName))
+		} else if (!questionText.equals(other.questionText))
 			return false;
 		return true;
 	}
@@ -100,7 +104,7 @@ public class Role {
 	 */
 	@Override
 	public String toString() {
-		return "Role [roleId=" + roleId + ", roleName=" + roleName + "]";
+		return "Question [questionId=" + questionId + ", questionText=" + questionText + "]";
 	}
 	
 	

@@ -10,52 +10,52 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 
-@Table(name = "answers")
+@Table(name = "survey_privacy")
 @Entity
-public class Answer {
+public class SurveyPrivacy {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "answer_id")
-	private int answerId;
+	@Column(name = "privacy_id")
+	private int privacyId;
 	
-	private String answerText;
+	@Column(name = "privacy")
+	private String privacyType;
 
-	public Answer() {
+	public SurveyPrivacy() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @return the answerId
+	 * @return the privacyId
 	 */
-	public int getAnswerId() {
-		return answerId;
+	public int getPrivacyId() {
+		return privacyId;
 	}
 
 	/**
-	 * @param answerId the answerId to set
+	 * @param privacyId the privacyId to set
 	 */
-	public void setAnswerId(int answerId) {
-		this.answerId = answerId;
+	public void setPrivacyId(int privacyId) {
+		this.privacyId = privacyId;
 	}
 
 	/**
-	 * @return the answerText
+	 * @return the privacyType
 	 */
-	public String getAnswerText() {
-		return answerText;
+	public String getPrivacyType() {
+		return privacyType;
 	}
 
 	/**
-	 * @param answerText the answerText to set
+	 * @param privacyType the privacyType to set
 	 */
-	public void setAnswerText(String answerText) {
-		this.answerText = answerText;
+	public void setPrivacyType(String privacyType) {
+		this.privacyType = privacyType;
 	}
 
 	/* (non-Javadoc)
@@ -65,8 +65,8 @@ public class Answer {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + answerId;
-		result = prime * result + ((answerText == null) ? 0 : answerText.hashCode());
+		result = prime * result + privacyId;
+		result = prime * result + ((privacyType == null) ? 0 : privacyType.hashCode());
 		return result;
 	}
 
@@ -81,13 +81,13 @@ public class Answer {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Answer other = (Answer) obj;
-		if (answerId != other.answerId)
+		SurveyPrivacy other = (SurveyPrivacy) obj;
+		if (privacyId != other.privacyId)
 			return false;
-		if (answerText == null) {
-			if (other.answerText != null)
+		if (privacyType == null) {
+			if (other.privacyType != null)
 				return false;
-		} else if (!answerText.equals(other.answerText))
+		} else if (!privacyType.equals(other.privacyType))
 			return false;
 		return true;
 	}
@@ -97,8 +97,9 @@ public class Answer {
 	 */
 	@Override
 	public String toString() {
-		return "Answer [answerId=" + answerId + ", answerText=" + answerText + "]";
+		return "SurveyPrivacy [privacyId=" + privacyId + ", privacyType=" + privacyType + "]";
 	}
+	
 	
 	
 }

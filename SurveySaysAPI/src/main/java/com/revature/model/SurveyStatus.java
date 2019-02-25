@@ -1,8 +1,5 @@
 package com.revature.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,18 +14,21 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Table(name = "status")
+@Table(name = "survey_status")
 @Entity
-public class Status {
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class SurveyStatus {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "status_id")
 	private int statusId;
 	
+	@Column(name = "status")
 	private String statusType;
 
-	public Status() {
+	public SurveyStatus() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

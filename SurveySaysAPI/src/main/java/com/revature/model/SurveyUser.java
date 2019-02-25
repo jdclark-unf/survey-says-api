@@ -1,21 +1,56 @@
 package com.revature.model;
 
-public class AppUser {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@Entity
+@Table(name = "survey_user")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class SurveyUser {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
 	private int userId;
-	private String username;
-	private String password;
-	private String firstName;
-	private String lastName;
-	private String email;
-	private String role; // should be Role object?
 	
-	public AppUser() {
+	@Column(name = "username")
+	private String username;
+	
+	@Column(name = "password")
+	private String password;
+	
+	@Column(name = "first_name")
+	private String firstName;
+	
+	@Column(name = "last_name")
+	private String lastName;
+	
+	@Column(name = "email")
+	private String email;
+	
+	@OneToOne
+	@JoinColumn(name = "role_id")
+	private SurveyRole role;
+	
+	public SurveyUser() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public AppUser(int userId, String username, String password, String firstName, String lastName, String email,
-			String role) {
+	public SurveyUser(int userId, String username, String password, String firstName, String lastName, String email,
+			SurveyRole role) {
 		super();
 		this.userId = userId;
 		this.username = username;
@@ -113,14 +148,14 @@ public class AppUser {
 	/**
 	 * @return the role
 	 */
-	public String getRole() {
+	public SurveyRole getRole() {
 		return role;
 	}
 
 	/**
 	 * @param role the role to set
 	 */
-	public void setRole(String role) {
+	public void setRole(SurveyRole role) {
 		this.role = role;
 	}
 
@@ -152,7 +187,7 @@ public class AppUser {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AppUser other = (AppUser) obj;
+		SurveyUser other = (SurveyUser) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -193,12 +228,11 @@ public class AppUser {
 	 */
 	@Override
 	public String toString() {
-		return "AppUser [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", email=" + email + ", role=" + role + ", getUserId()="
-				+ getUserId() + ", getUsername()=" + getUsername() + ", getPassword()=" + getPassword()
-				+ ", getFirstName()=" + getFirstName() + ", getLastName()=" + getLastName() + ", getEmail()="
-				+ getEmail() + ", getRole()=" + getRole() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass()
-				+ ", toString()=" + super.toString() + "]";
+		return "SurveyUser [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", email=" + email + ", role=" + role + "]";
 	}
+	
+	
+}
 	
 	
