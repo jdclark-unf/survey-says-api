@@ -40,10 +40,6 @@ public class SurveyUser {
 	@Column(name = "email")
 	private String email;
 	
-	@OneToOne
-	@JoinColumn(name = "role_id")
-	private SurveyRole role;
-	
 	public SurveyUser() {
 		super();
 		// TODO Auto-generated constructor stub
