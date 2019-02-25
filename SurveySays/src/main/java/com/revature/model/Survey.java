@@ -31,9 +31,16 @@ public class Survey {
 	@JoinColumn(name = "user_id")
 	private SurveyUser creator;
 	
+	@Column(name = "title")
 	private String title;
+	
+	@Column(name = "description")
 	private String description;
+	
+	@Column(name = "date_created")
 	private Date dateCreated;
+	
+	@Column(name = "closing_date")
 	private Date closingDate;
 	
 	@OneToOne(fetch = FetchType.LAZY)
@@ -44,7 +51,6 @@ public class Survey {
 	@JoinColumn(name = "privacy_id")
 	private SurveyPrivacy privacy;
 	
-
 	public Survey() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -14,16 +14,22 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Table(name = "question")
 @Entity
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Question {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "question_id")
 	private int questionId;
 	
+	@Column(name = "question_text")
 	private String questionText;
+	
+	@ManyToOne
+	@JoinColumn(name = "survey_id")
 	private Survey survey;
 
 	public Question() {
@@ -59,20 +65,6 @@ public class Question {
 		this.questionText = questionText;
 	}
 
-	/**
-	 * @return the survey
-	 */
-	public Survey getSurvey() {
-		return survey;
-	}
-
-	/**
-	 * @param survey the survey to set
-	 */
-	public void setSurvey(Survey survey) {
-		this.survey = survey;
-	}
-
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -82,7 +74,6 @@ public class Question {
 		int result = 1;
 		result = prime * result + questionId;
 		result = prime * result + ((questionText == null) ? 0 : questionText.hashCode());
-		result = prime * result + ((survey == null) ? 0 : survey.hashCode());
 		return result;
 	}
 
@@ -105,11 +96,6 @@ public class Question {
 				return false;
 		} else if (!questionText.equals(other.questionText))
 			return false;
-		if (survey == null) {
-			if (other.survey != null)
-				return false;
-		} else if (!survey.equals(other.survey))
-			return false;
 		return true;
 	}
 
@@ -118,9 +104,8 @@ public class Question {
 	 */
 	@Override
 	public String toString() {
-		return "Question [questionId=" + questionId + ", questionText=" + questionText + ", survey=" + survey + "]";
+		return "Question [questionId=" + questionId + ", questionText=" + questionText + "]";
 	}
-	
 	
 	
 }

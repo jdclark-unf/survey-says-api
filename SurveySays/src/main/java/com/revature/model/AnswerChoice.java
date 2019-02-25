@@ -14,16 +14,22 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Table(name = "answer_choice")
 @Entity
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class AnswerChoice {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "choice_id")
 	private int choiceId;
 	
+	@Column(name = "answer_text")
 	private String answerText;
+	
+	@ManyToOne
+	@JoinColumn(name = "question_id")
 	private Question question;
 
 	public AnswerChoice() {

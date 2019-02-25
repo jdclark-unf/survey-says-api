@@ -22,6 +22,7 @@ public class SurveyPrivacy {
 	@Column(name = "privacy_id")
 	private int privacyId;
 	
+	@Column(name = "privacy")
 	private String privacyType;
 
 	public SurveyPrivacy() {

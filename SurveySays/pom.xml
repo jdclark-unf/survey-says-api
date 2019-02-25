@@ -6,13 +6,13 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.3.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.revature</groupId>
-	<artifactId>SurveySaysApi</artifactId>
+	<artifactId>SurveySays</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SurveySaysApi</name>
-	<description>An API for connecting the SurveySays application with its database</description>
+	<name>SurveySays</name>
+	<description>API for SurveySays Web Application</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -47,7 +47,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
@@ -63,12 +62,10 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-hibernate5</artifactId>
-		</dependency>
+			</dependency>
 	</dependencies>
 
 	<build>
-		<!-- What mvn will build jar to -->
-		<finalName>SurveySays</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -14,17 +14,24 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Table(name = "response")
 @Entity
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Response {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "response_id")
 	private int responseId;
 	
+	// Not sure about relation... using 1:1 for now
+	@OneToOne
+	@JoinColumn(name = "question_id")
 	private Question question;
 
+	@OneToOne
+	@JoinColumn(name = "answer_chosen")
 	private AnswerChoice answerChosen;
 	
 	public Response() {
@@ -117,10 +124,10 @@ public class Response {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
-	@Override
-	public String toString() {
-		return "Response [responseId=" + responseId + ", question=" + question + ", answerChosen=" + answerChosen + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Response [responseId=" + responseId + ", question=" + question + ", answerChosen=" + answerChosen + "]";
+//	}
 	
 	
 	
